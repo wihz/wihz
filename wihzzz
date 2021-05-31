@@ -1,0 +1,23 @@
+package Test;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DbUtil {
+    private static String jdbcName = "com.mysql.jdbc.Driver";
+    private static String url = "jdbc:mysql://localhost:3306/database";
+    private static String userName = "root";
+    private static String userPwd = "123456";
+    private static Connection con;
+
+    public static Connection getCon() throws Exception {
+        Class.forName(jdbcName);
+        con = DriverManager.getConnection(url, userName, userPwd);
+        return con;
+    }
+    public static void closeCon() throws Exception {
+        if (con != null) {
+            con.close();
+        }
+    }
+}
